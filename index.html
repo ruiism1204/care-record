@@ -10,29 +10,24 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; media-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'" />
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='12' fill='%23176b60'/%3E%3Cpath d='M16 13h16v24H16zM21 10h6v6h-6zM20 23h8M20 28h8' fill='none' stroke='white' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E" />
     <title>ケアカンファレンス記録｜試作品</title>
-    <script type="module" crossorigin src="./assets/index-DHRxlggH.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-Drthg7kZ.css">
+    <script type="module" crossorigin src="./assets/index-BtJZKV9v.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-BV_orHaf.css">
   </head>
   <body>
     <a class="skip-link" href="#section-title">本文へ移動</a>
-    <header class="app-header">
-      <div class="brand"><span id="brand-icon" class="brand-icon" aria-hidden="true"></span><div><strong>記録ノート</strong><span class="brand-caption">ケアカンファレンス記録</span></div><span class="prototype-badge">試作品</span></div>
-      <span class="privacy-badge"><span class="status-dot"></span>架空データ専用</span>
-    </header>
-
     <main class="workspace">
       <div class="page-heading">
-        <div><h1>ケアカンファレンス記録</h1><p class="page-description">項目を選ぶ → 話す → 確認して追加 → Word保存</p><p id="layout-status" class="layout-status" role="status"></p></div>
+        <h1>ケアカンファレンス記録</h1>
         <div class="heading-actions"><button type="button" id="export-button" class="button button-primary" disabled><span data-icon="download" aria-hidden="true"></span><span id="export-label">Word保存</span></button><button type="button" id="new-record-button" class="button button-ghost" disabled><span data-icon="plus" aria-hidden="true"></span>新しい記録</button></div>
       </div>
-
-      <div class="demo-bar"><p id="demo-status" role="status">この端末にデモの準備をしています…</p><p>準備完了後は、Chromeのメニューから「ホーム画面に追加」できます。音声入力には通信が必要です。</p></div>
+      <p id="layout-status" class="layout-status" role="status" hidden></p>
+      <p id="demo-status" class="demo-status" role="status">この端末にアプリを保存しています…</p>
       <div id="storage-warning" class="warning-banner" role="alert" hidden><div><strong>保存を確認してください</strong><p id="storage-error"></p></div><button type="button" id="reset-storage" class="button button-small" hidden>保存データを初期化</button></div>
 
       <div id="legacy-banner" class="info-banner" hidden><div><strong>以前の版（仮の8項目）の下書きがあります</strong><p id="legacy-text">新しい様式の欄へは移していません。この端末にそのまま残しています。必要なときは、以前の仮様式のままWordに保存できます。</p></div><button type="button" id="legacy-export" class="button button-small">以前の下書きをWord保存</button></div>
 
-      <section class="info-card" aria-labelledby="info-title">
-        <div class="info-heading"><h2 id="info-title">基本情報</h2><span class="info-caption">キーボードで入力します</span><button type="button" id="info-sample" class="text-button">架空の例</button></div>
+      <details id="info-card" class="info-card">
+        <summary><span class="info-title">基本情報</span><span id="info-summary" class="info-summary"></span><span class="info-chevron" aria-hidden="true"></span></summary>
         <div class="info-grid">
           <label class="field field-date"><span>開催日</span><input type="date" data-info="date" min="2019-05-01" max="2118-12-31" /></label>
           <label class="field"><span>開始時刻</span><input type="time" data-info="startTime" /></label>
@@ -44,36 +39,35 @@
           <label class="field"><span>要介護度</span><select data-info="careLevel"><option value="">未選択</option><option value="1">要介護1</option><option value="2">要介護2</option><option value="3">要介護3</option><option value="4">要介護4</option><option value="5">要介護5</option></select></label>
         </div>
         <p id="info-error" class="info-error" role="alert" hidden></p>
-        <p class="info-preview">Wordの開催日時：<span id="date-preview"></span></p>
-      </section>
+        <p class="info-preview">Wordでは：<span id="date-preview"></span></p>
+      </details>
 
       <div class="record-layout">
         <aside class="section-panel" aria-label="記録する項目">
           <div class="panel-heading"><h2>記録する項目</h2><span id="section-progress-text">0 / 6</span></div>
           <progress id="section-progress" max="6" value="0" aria-label="記入済みの項目数"></progress>
           <nav id="section-nav" class="section-nav" aria-label="項目の切り替え"></nav>
-          <p class="section-panel-note"><span data-icon="lock" aria-hidden="true"></span>内容はこのブラウザーに保存</p>
         </aside>
 
         <div class="content-column">
           <section class="editor-card" aria-labelledby="section-title">
-            <div class="record-heading"><div class="section-title-wrap"><span id="section-number" class="section-number">01</span><div><h2 id="section-title" tabindex="-1">通所介護計画書目標</h2><p id="section-hint">通所介護計画書の目標を、ひとつずつ。</p></div></div><span id="item-count" class="count-badge">0件</span></div>
+            <div class="record-heading"><div><h2 id="section-title" tabindex="-1">通所介護計画書目標</h2><p id="section-hint">通所介護計画書の目標を、ひとつずつ。</p></div><span id="item-count" class="count-badge">0件</span></div>
             <div class="speech-area"><div class="speech-buttons"><button type="button" id="speech-button" class="button button-speech" disabled aria-describedby="speech-note"><span data-icon="mic" aria-hidden="true"></span>話す</button><button type="button" id="speech-stop" class="button button-danger" disabled>止める</button></div><p id="speech-status" class="speech-status" role="status" aria-live="polite"></p></div>
             <div class="editor-heading"><h3 id="editor-title">文章を確認・修正</h3><span id="editor-mode" class="editor-mode">新しい箇条書き</span></div>
             <label id="editor-label" class="sr-only" for="entry-text">通所介護計画書目標に追加する文章</label>
-            <textarea id="entry-text" rows="5" maxlength="20000" placeholder="「話す」で音声入力できます。&#10;止めた後は、ここをタップして直せます。" aria-describedby="editor-help char-count"></textarea>
+            <textarea id="entry-text" rows="4" maxlength="20000" placeholder="「話す」で音声入力、またはここに入力。&#10;直してから「追加」を押します。"></textarea>
             <div class="symbol-bar" role="group" aria-label="記号を入れる"><span id="symbol-help">記号は、入力位置に入ります</span><button type="button" class="symbol-button" data-symbol="、" aria-label="読点を入れる">、</button><button type="button" class="symbol-button" data-symbol="。" aria-label="句点を入れる">。</button><button type="button" class="symbol-button" data-symbol="・" aria-label="中黒を入れる">・</button><button type="button" class="symbol-button" data-symbol="（" aria-label="丸括弧を開く">（</button><button type="button" class="symbol-button" data-symbol="）" aria-label="丸括弧を閉じる">）</button><button type="button" class="symbol-button" data-symbol="【" aria-label="隅付き括弧を開く">【</button><button type="button" class="symbol-button" data-symbol="】" aria-label="隅付き括弧を閉じる">】</button><button type="button" class="symbol-button" data-symbol="「" aria-label="かぎ括弧を開く">「</button><button type="button" class="symbol-button" data-symbol="」" aria-label="かぎ括弧を閉じる">」</button></div>
-            <div class="editor-meta"><p id="editor-help">「止める」の後、文章を直して「追加」を押します。</p><span id="char-count">0 / 20,000</span></div>
-            <div class="editor-actions"><button type="button" id="sample-button" class="text-button">架空の例文</button><div class="commit-actions"><button type="button" id="clear-button" class="button button-ghost" hidden>入力を消す</button><button type="button" id="commit-button" class="button button-primary" disabled><span data-icon="plus" aria-hidden="true"></span><span id="commit-label">追加</span></button></div></div>
+            <p id="char-count" class="char-count" hidden></p>
+            <div class="editor-actions"><button type="button" id="clear-button" class="button button-ghost" hidden>入力を消す</button><button type="button" id="commit-button" class="button button-primary" disabled><span data-icon="plus" aria-hidden="true"></span><span id="commit-label">追加</span></button></div>
             <p id="speech-note" class="speech-notice"></p>
           </section>
 
-          <div class="save-bar"><span id="save-icon" data-icon="check" aria-hidden="true"></span><span id="save-status" role="status" aria-live="polite">入力すると自動保存されます</span><button type="button" id="save-button" class="text-button">今すぐ保存</button></div>
-          <p class="draft-note">入力途中も自動保存します。Wordには「追加」した文章が入ります。</p>
-          <section class="record-card" aria-labelledby="recorded-title"><h3 id="recorded-title" class="recorded-title">追加した文章</h3><div id="empty-state" class="empty-state"><span class="empty-symbol" data-icon="note" aria-hidden="true"></span><p>まだ追加した文章はありません</p><span>上の欄で確認して「追加」を押してください。</span></div><ol id="entry-list" class="entry-list" aria-label="追加済みの文章"></ol></section>
+          <section class="record-card" aria-labelledby="recorded-title"><h3 id="recorded-title" class="recorded-title">追加した文章</h3><p id="empty-state" class="empty-note">まだありません。「追加」すると、ここに並びます。</p><ol id="entry-list" class="entry-list" aria-label="追加済みの文章"></ol></section>
+          <div class="step-actions"><button type="button" id="next-section" class="button button-ghost"></button></div>
+          <div class="save-bar"><span id="save-icon" data-icon="check" aria-hidden="true"></span><span id="save-status" role="status" aria-live="polite">入力すると自動保存されます</span></div>
         </div>
       </div>
-      <footer class="app-footer"><span>通所ケアカンファレンス記録様式（A4縦）</span><span>個人情報・機密情報は入力しないでください</span></footer>
+      <footer class="app-footer"><span>記録はこのスマホの中だけに保存されます</span><span>通所ケアカンファレンス記録様式（A4縦）</span></footer>
     </main>
 
     <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
