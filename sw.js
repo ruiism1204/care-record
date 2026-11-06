@@ -1,10 +1,10 @@
 // Generated application files only. No microphone, user records, or external requests.
-const VERSION = "0.5.1";
-const CACHE = "conference-demo-files-87705c4988fad736afef";
+const VERSION = "0.5.2";
+const CACHE = "conference-demo-files-1103e8ee32afb80da0f1";
 const PREFIX = 'conference-demo-files-';
 // The app may be served from / (USB) or from a folder such as /repo/ (GitHub Pages).
 const BASE = new URL('./', self.location.href).pathname;
-const ASSETS = ["/assets/index-B5UaiU71.css","/assets/index-DGHW4KGw.js","/assets/word-export-CLoel1p6.js","/icons/app-192.png","/icons/app-512.png","/index.html","/manifest.webmanifest"].map(path => BASE + path.slice(1));
+const ASSETS = ["/assets/index-DHRxlggH.js","/assets/index-Drthg7kZ.css","/assets/word-export-DrRUNMMj.js","/icons/app-192.png","/icons/app-512.png","/index.html","/manifest.webmanifest"].map(path => BASE + path.slice(1));
 const allowed = new Set(ASSETS);
 self.addEventListener('install', event => {
   event.waitUntil((async () => {
